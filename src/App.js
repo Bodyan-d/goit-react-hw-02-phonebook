@@ -25,7 +25,9 @@ class App extends Component {
     number: '',
   };
 
-  handleChange = e => {};
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -44,13 +46,6 @@ class App extends Component {
 
   handleFilter = e => {
     this.setState({ [e.target.name]: e.target.value });
-    this.state.contacts.reduce((result, contact) => {
-      if (!contact.name.toLowerCase().search(this.state.filter.toLowerCase())) {
-        result.push(contact);
-        console.log(result);
-      }
-      return result;
-    }, []);
   };
 
   render() {
@@ -67,7 +62,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} handleFilter={this.handleFilter} />
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contacts} filter={filter} />
       </div>
     );
   }
