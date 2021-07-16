@@ -44,8 +44,7 @@ class App extends Component {
     });
   };
 
-  handleFilter = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleFilter = () => {
     const { filter, contacts } = this.state;
 
     return contacts.filter(contact =>
@@ -66,8 +65,8 @@ class App extends Component {
         />
 
         <h2>Contacts</h2>
-        <Filter filter={filter} handleFilter={this.handleFilter} />
-        <ContactList contacts={this.handleFilter} filter={filter} />
+        <Filter filter={filter} handleChange={this.handleChange} />
+        <ContactList contacts={this.handleFilter()} filter={filter} />
       </div>
     );
   }

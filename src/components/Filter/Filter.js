@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function Filter({ filter, handleFilter }) {
+export default function Filter({ filter, handleChange }) {
   return (
     <div>
       <p>Find contacts by name</p>
       <input
         className="search"
-        onChange={handleFilter}
+        onChange={handleChange}
         type="text"
         name="filter"
         value={filter}
