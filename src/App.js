@@ -48,10 +48,8 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
     const { filter, contacts } = this.state;
 
-    console.log(
-      contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase()),
-      ),
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()),
     );
   };
 
@@ -69,7 +67,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} handleFilter={this.handleFilter} />
-        <ContactList contacts={contacts} filter={filter} />
+        <ContactList contacts={this.handleFilter} filter={filter} />
       </div>
     );
   }
