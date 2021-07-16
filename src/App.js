@@ -46,6 +46,13 @@ class App extends Component {
 
   handleFilter = e => {
     this.setState({ [e.target.name]: e.target.value });
+    const { filter, contacts } = this.state;
+
+    console.log(
+      contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase()),
+      ),
+    );
   };
 
   render() {
