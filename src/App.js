@@ -38,7 +38,7 @@ class App extends Component {
       return {
         contacts: [
           ...prevState.contacts,
-          { id: uuidv4(), name: [prevState.name], number: [prevState.number] },
+          { id: uuidv4(), name: prevState.name, number: prevState.number },
         ],
       };
     });
@@ -66,7 +66,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} handleChange={this.handleChange} />
-        <ContactList contacts={this.handleFilter()} filter={filter} />
+        <ContactList contacts={this.handleFilter()} />
       </div>
     );
   }
