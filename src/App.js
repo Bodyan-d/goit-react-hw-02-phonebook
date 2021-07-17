@@ -33,7 +33,14 @@ class App extends Component {
     e.preventDefault();
 
     this.setState(prevState => {
-      console.log(prevState);
+      if (
+        prevState.contacts.some(contact =>
+          contact.name.includes(prevState.name),
+        )
+      ) {
+        alert(`${prevState.name} is already in contacts`);
+        return;
+      }
 
       return {
         contacts: [
@@ -52,8 +59,20 @@ class App extends Component {
     );
   };
 
+  deleteItem = e => {
+    const elemIndexToDelete = this.state.contacts.findIndex(
+      contact => e.target.id === contact.id,
+    );
+    return this.setState(prevState => {
+      console.log(elemIndexToDelete);
+      prevState.contacts.splice(elemIndexToDelete, 1);
+
+      return { prevState };
+    });
+  };
+
   render() {
-    const { name, number, filter, contacts } = this.state;
+    const { name, number, filter } = this.state;
     return (
       <div className="container">
         <h1>Phonebook</h1>
@@ -66,7 +85,10 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} handleChange={this.handleChange} />
-        <ContactList contacts={this.handleFilter()} />
+        <ContactList
+          contacts={this.handleFilter()}
+          deleteItem={this.deleteItem}
+        />
       </div>
     );
   }

@@ -1,9 +1,10 @@
 import React from 'react';
+import './Filter.css';
 
 export default function Filter({ filter, handleChange }) {
   return (
     <div>
-      <p>Find contacts by name</p>
+      <p className="filter-title">Find contacts by name</p>
       <input
         className="search"
         onChange={handleChange}
